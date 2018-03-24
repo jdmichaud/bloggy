@@ -3,10 +3,10 @@ rules:
   no-console: 0
   comma-dangle:
   - error
-  - arrays: never
-    objects: never
-    imports: never
-    exports: never
+  - arrays: only-multiline
+    objects: only-multiline
+    imports: only-multiline
+    exports: only-multiline
     functions: ignore
   function-paren-newline: 0
 
