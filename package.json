@@ -1,0 +1,23 @@
+{
+  "name": "bloggy",
+  "version": "1.0.0",
+  "description": "A minimalist blog platform based on markdown and gist",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jdmichaud/bloggy.git"
+  },
+  "keywords": [
+    "blog",
+    "markdown"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdmichaud/bloggy/issues"
+  },
+  "homepage": "https://github.com/jdmichaud/bloggy#readme"
+}
