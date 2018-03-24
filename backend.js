@@ -11,15 +11,20 @@ const Backend = function Backend(config) {
 
   async function buildIndex(gists) {
     // Build index
-    const entries = await Promise.all(gists
+    const publishables = gists
       .filter(entry => lodash.keys(entry.files).includes(constants.DESCRIPTOR_FILENAME))
-      .map(async (entry, index) => {
-        const response = await fetch(entry.files[constants.DESCRIPTOR_FILENAME].raw_url);
-        const metafile = await response.text();
-        const metadata = yaml.safeLoad(metafile);
-        return { title: metadata.title, index: index + 1 };
-      })
-    );
+      // Sort by creation date (oldest last)
+      .sort((a, b) => Date.parse(a.created_at) > Date.parse(b.created_at));
+    const entries = await Promise.all(publishables.map(async (entry, index) => {
+      const response = await fetch(entry.files[constants.DESCRIPTOR_FILENAME].raw_url);
+      const metafile = await response.text();
+      const metadata = yaml.safeLoad(metafile);
+      return {
+        title: metadata.title,
+        index: publishables.length - index,
+        id: entry.id,
+      };
+    }));
     const template = fs.readFileSync(path.join(config.template_path, 'index.html')).toString('utf-8');
     return Mustache.render(template, { entries });
   }
