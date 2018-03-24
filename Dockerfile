@@ -15,5 +15,7 @@ COPY . /root/bloggy/
 # build the project
 RUN cd /root/bloggy && npm install
 
+EXPOSE 80/tcp
+
 # Start the express server when container is started
 CMD node /root/bloggy/index.js
