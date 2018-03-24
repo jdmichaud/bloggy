@@ -25,9 +25,12 @@
     "command-line-usage": "^5.0.3",
     "eslint": "^4.19.1",
     "express": "^4.16.3",
+    "gists": "^1.0.1",
     "js-yaml": "^3.11.0",
     "lodash": "^4.17.5",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "mustache": "^2.3.0",
+    "node-fetch": "^2.1.1"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "^12.1.0",

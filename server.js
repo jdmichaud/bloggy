@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const lodash = require('lodash');
-const backend = require('./backend');
+const Backend = require('./backend');
 
 const Server = function Server(config) {
   this.config = config;
@@ -31,7 +31,8 @@ const Server = function Server(config) {
   }
 
   // The routes
-  lodash.forIn(backend, (handler, route) => app.get(route, handler));
+  this.backend = new Backend(config);
+  lodash.forIn(this.backend.routes, (handler, route) => app.get(route, handler));
 
   // Error handler
   app.use((err, req, res, next) => {
@@ -39,7 +40,6 @@ const Server = function Server(config) {
     next(err);
   });
   app.use((err, req, res, next) => { // eslint-disable-line
-    console.log(req, res);
     res.status(500).send({ error: 'Server Error' });
   });
 

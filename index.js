@@ -16,9 +16,9 @@ const optionDefinitions = [
     name: 'config',
     alias: 'c',
     type: String,
-    defaultValue: constants.DEFAULT_CONFIG,
+    defaultValue: constants.DEFAULT_CONFIG
   },
-  { name: 'help', alias: 'h' },
+  { name: 'help', alias: 'h' }
 ];
 
 const options = commandLineArgs(optionDefinitions);
@@ -26,7 +26,7 @@ const options = commandLineArgs(optionDefinitions);
 if (lodash.has(options, 'help')) {
   console.log(getUsage([{
     header: 'usage',
-    optionList: optionDefinitions,
+    optionList: optionDefinitions
   }]));
   process.exit(0);
 }
