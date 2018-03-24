@@ -12,7 +12,12 @@ const Server = require('./server');
 const optionDefinitions = [
   { name: 'host', alias: 'i', type: String },
   { name: 'port', alias: 'p', type: Number },
-  { name: 'config', alias: 'c', type: String, defaultValue: constants.DEFAULT_CONFIG },
+  {
+    name: 'config',
+    alias: 'c',
+    type: String,
+    defaultValue: constants.DEFAULT_CONFIG,
+  },
   { name: 'help', alias: 'h' },
 ];
 
@@ -26,8 +31,9 @@ if (lodash.has(options, 'help')) {
   process.exit(0);
 }
 // Load config
+let config;
 try {
-  var config = yaml.safeLoad(fs.readFileSync(options.config, 'utf8'));
+  config = yaml.safeLoad(fs.readFileSync(options.config, 'utf8'));
 } catch (e) {
   console.error(`error: could not load the config file ${options.config}: ${e}`);
   process.exit(2);

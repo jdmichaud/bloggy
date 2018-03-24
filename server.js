@@ -1,5 +1,4 @@
 const express = require('express');
-const lodash = require('lodash');
 const morgan = require('morgan');
 
 const Server = function Server(config) {
@@ -14,17 +13,16 @@ const Server = function Server(config) {
   }
   // For CORS
   if (config.cors_enabled) {
-    app.use(function(req, res, next) {
+    app.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
       res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 
-      //intercepts OPTIONS method
-      if ('OPTIONS' === req.method) {
-        //respond with 200
+      // intercepts OPTIONS method
+      if (req.method === 'OPTIONS') {
+        // respond with 200
         res.sendStatus(200);
-      }
-      else {
+      } else {
         next();
       }
     });
@@ -37,32 +35,22 @@ const Server = function Server(config) {
     // Return index
   });
 
-  app.get(`/[^/]+/?`, (req, res) => {
-    const resource = urlRegex.exec(req.url)[1];
-    if (lodash.has(req.query, 'watch')) {
-      watcher[resource] = watcher[resource] || [];
-      watcher[resource].push(res);
-    } else {
-      rest.list(resource, req.query, res);
-    }
-  });
-
   // Error handler
   app.use((err, req, res, next) => {
     console.error('Error:', err.stack);
     next(err);
   });
-  app.use((err, req, res, next) => {
+  app.use((err, req, res) => {
     res.status(500).send({ error: 'Server Error' });
   });
 
   this.listen = () => {
     app.listen(this.config.port, this.config.host, () => {
-      console.log(`server listening on http://${options.host}:${options.port}/`);
+      console.log(`server listening on http://${config.host}:${config.port}/`);
     });
-  }
+  };
 
   return this;
-}
+};
 
 module.exports = Server;
