@@ -2,12 +2,12 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const lodash = require('lodash');
-const constants = require('./constants');
-const defaultConfig = require('./default-config');
 const commandLineArgs = require('command-line-args');
 const getUsage = require('command-line-usage');
 
-const Server = require('./server');
+const constants = require('./src/constants');
+const defaultConfig = require('./src/default-config');
+const Server = require('./src/server');
 
 const optionDefinitions = [
   { name: 'host', alias: 'i', type: String },
