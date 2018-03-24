@@ -19,5 +19,18 @@
   "bugs": {
     "url": "https://github.com/jdmichaud/bloggy/issues"
   },
-  "homepage": "https://github.com/jdmichaud/bloggy#readme"
+  "homepage": "https://github.com/jdmichaud/bloggy#readme",
+  "dependencies": {
+    "command-line-args": "^5.0.2",
+    "command-line-usage": "^5.0.3",
+    "eslint": "^4.19.1",
+    "express": "^4.16.3",
+    "js-yaml": "^3.11.0",
+    "lodash": "^4.17.5",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0"
+  }
 }
