@@ -38,7 +38,8 @@ const Server = function Server(config) {
     console.error('Error:', err.stack);
     next(err);
   });
-  app.use((err, req, res) => {
+  app.use((err, req, res, next) => { // eslint-disable-line
+    console.log(req, res);
     res.status(500).send({ error: 'Server Error' });
   });
 
