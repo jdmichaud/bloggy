@@ -1,5 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
+const lodash = require('lodash');
+const backend = require('./backend');
 
 const Server = function Server(config) {
   this.config = config;
@@ -28,12 +30,8 @@ const Server = function Server(config) {
     });
   }
 
-  // The main route
-  app.get('/?', (req, res) => {
-    // Retrieve all README.md from gist server
-    // Build index
-    // Return index
-  });
+  // The routes
+  lodash.forIn(backend, (handler, route) => app.get(route, handler));
 
   // Error handler
   app.use((err, req, res, next) => {
