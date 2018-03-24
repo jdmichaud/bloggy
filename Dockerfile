@@ -16,4 +16,4 @@ COPY . /root/bloggy/
 RUN cd /root/bloggy && npm install
 
 # Start the express server when container is started
-CMD node index.js
+CMD node /root/bloggy/index.js
