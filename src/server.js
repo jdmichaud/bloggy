@@ -30,6 +30,9 @@ const Server = function Server(config) {
     });
   }
 
+  // Serving static folder
+  app.use(express.static('static'));
+
   // The routes
   this.backend = new Backend(config);
   lodash.forIn(this.backend.routes, (handler, route) => app.get(route, handler));

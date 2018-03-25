@@ -50,20 +50,28 @@ const Backend = function Backend(config) {
   };
 
   this.routes = {
-    '/?': async (req, res) => {
-      // Retrieve all metas from gist server
-      const response = await fetch(`https://api.github.com/users/${config.git_username}/gists`);
-      const body = await response.text();
-      const index = await buildIndex(JSON.parse(body));
-      // Return index
-      res.send(index);
+    '/?': async (req, res, next) => {
+      try {
+        // Retrieve all metas from gist server
+        const response = await fetch(`https://api.github.com/users/${config.git_username}/gists`);
+        const body = await response.text();
+        const index = await buildIndex(JSON.parse(body));
+        // Return index
+        res.send(index);
+      } catch (e) {
+        next(e);
+      }
     },
-    '/[a-z0-9]*/?': async (req, res) => {
-      const id = req.url.replace('/', '');
-      const response = await fetch(`https://api.github.com/gists/${id}`);
-      const body = await response.text();
-      const gist = await render(JSON.parse(body));
-      res.send(gist);
+    '/gist/[a-z0-9]*/?': async (req, res, next) => {
+      try {
+        const id = req.url.match(/\/gist\/([a-z0-9]*)\/?/)[1];
+        const response = await fetch(`https://api.github.com/gists/${id}`);
+        const body = await response.text();
+        const gist = await render(JSON.parse(body));
+        res.send(gist);
+      } catch (e) {
+        next(e);
+      }
     }
   };
 

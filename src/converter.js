@@ -4,7 +4,13 @@ const highlight = require('highlight.js');
 
 marked.setOptions({
   renderer: new marked.Renderer(),
-  highlight: code => highlight.highlightAuto(code).value,
+  highlight: (code, lang) => {
+    if (lang) {
+      return highlight.highlight(lang, code).value;
+    }
+    return highlight.highlightAuto(code).value;
+  },
+  // highlight: code => highlight.highlightAuto(code).value,
   pedantic: false,
   gfm: true,
   tables: true,

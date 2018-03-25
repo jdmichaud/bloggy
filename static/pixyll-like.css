@@ -1,0 +1,22 @@
+body {
+  font-family: "Merriweather","PT Serif",Georgia,"Times New Roman",serif;
+  font-size: 13px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: #555;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 70%;
+  margin: auto;
+}
+
+.article-content {
+  text-align: justify;
+}
