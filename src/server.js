@@ -31,7 +31,7 @@ const Server = function Server(config) {
   }
 
   // Serving static folder
-  app.use(express.static('static'));
+  app.use(express.static(config.static_path));
 
   // The routes
   this.backend = new Backend(config);

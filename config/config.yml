@@ -1,4 +1,4 @@
 logging_enabled: true
 git_username: jdmichaud
 template_path: './templates/'
-
+static_path: './static'
