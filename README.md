@@ -4,7 +4,7 @@ A simple blog platform based on gist and markdown
 
 ## How to use
 
-Add a 'meta.yml' file to you gist:
+Add a `README.md` file to your gist, and a 'meta.yml' file which contains a title:
 ```yml
 title = 'Explaining things'
 ```
@@ -17,4 +17,9 @@ git_username: username
 then run index.js
 ```bash
 node ./index.js -c config.yml -p 8080
+```
+
+finally popup a browser:
+```
+http://localhost:8080
 ```

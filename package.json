@@ -26,8 +26,10 @@
     "eslint": "^4.19.1",
     "express": "^4.16.3",
     "gists": "^1.0.1",
+    "highlight.js": "^9.12.0",
     "js-yaml": "^3.11.0",
     "lodash": "^4.17.5",
+    "marked": "^0.3.18",
     "morgan": "^1.9.0",
     "mustache": "^2.3.0",
     "node-fetch": "^2.1.1"
