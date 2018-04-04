@@ -66,9 +66,14 @@ const Backend = function Backend(config) {
       try {
         const id = req.url.match(/\/gist\/([a-z0-9]*)\/?/)[1];
         const response = await fetch(`https://api.github.com/gists/${id}`);
-        const body = await response.text();
-        const gist = await render(JSON.parse(body));
-        res.send(gist);
+        if (Math.floor(response.status / 100) != 2) {
+          console.log(response);
+          throw new Error(response.statusText);
+        } else {
+          const body = await response.text();
+          const gist = await render(JSON.parse(body));
+          res.send(gist);
+        }
       } catch (e) {
         next(e);
       }

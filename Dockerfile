@@ -10,6 +10,10 @@ RUN cd /root && \
   (export PATH=$PATH:/root/node-v8.9.3-linux-x64/bin; n 8.9.4) && \
   npm update -g npm && \
   rm -fr node-v8.9.3-linux-x64 node-v8.9.3-linux-x64.tar.xz
+# Install java for PlantUML
+RUN apt install -y default-jre
+# Download PlantUML
+RUN curl -sL https://downloads.sourceforge.net/project/plantuml/1.2018.2/plantuml.1.2018.2.jar --output /root/plantuml.jar
 # Copy the project in the container
 COPY . /root/bloggy/
 # build the project
